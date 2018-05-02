@@ -1,0 +1,31 @@
+
+<div>
+	<h6><%= link_to 'volver', posts_path %></h6>
+</div>
+<div style="margin-top: 30px;">
+	<h1><%= raw Markdown.new(@post.title).to_html %></h1>
+</div>
+<div style="margin-top: 30px;">  
+	<%= raw Markdown.new(@post.body).to_html %>
+</div>
+<% @post.comments.each do |comment| %>
+  <div class="card" style="margin-top: 30px;">
+    <div class="card-header">
+      <%= comment.user.email %> comentó hace <%= distance_of_time_in_words(comment.created_at, Time.current) %>
+    </div>
+    <div class="card-body">
+      <p class="card-text text-justify"><%= raw Markdown.new(comment.description).to_html %></p>
+    </div>
+   </div>
+ <% end %>
+<% if user_signed_in? %>
+  <%= form_for [@post, @post.comments.build] do |f| %>
+    <div class="form-group" style="margin-top: 30px;"> 
+      <strong><%= f.label :description, "Nuevo Comentario" %></strong>
+      <%= f.text_area :description, class: "form-control", rows: "4" %>
+    </div>
+    <%=f.submit "Comentar", class: "btn btn-primary" %>
+  <% end %>
+<% end %> 
+
+
