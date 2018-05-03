@@ -4,6 +4,15 @@
   	<div>
 		<h1>Nuevo Post</h1>
 	</div>
+	<% if @post.errors.any? %>
+		<div class="alert alert-danger" role="alert">
+		  	<ul>
+		  		<% @post.errors.full_messages.each do |error| %>
+		  			<li><%= error %></li>
+		  		<% end %>
+		  	</ul>
+		</div>
+	<% end %>
 	<%= form_for (@post) do |f| %>
 	  <div class="form-group">
 	  	<%= f.label :title, "Título" %>

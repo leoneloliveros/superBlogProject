@@ -6,12 +6,13 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 	end
 	def new	
-		@post = Post.new		
+		@post = Post.new
+
 	end
 	def create
 		@post = Post.new(post_params)
 		if @post.save
-			redirect_to @post
+			redirect_to posts_path, notice: "El post se ha creado con exito"
 		else
 			render :new
 		end
