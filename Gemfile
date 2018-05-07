@@ -32,6 +32,7 @@ gem 'bootstrap', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'devise'
 gem "redcarpet"
+gem 'rails-i18n', '~> 5.1' # For 5.0.x, 5.1.x and 5.2.x
 
 
 # Use Capistrano for deployment
